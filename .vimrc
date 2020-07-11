@@ -9,6 +9,12 @@ Plug 'tpope/vim-commentary'
 Plug 'mhartington/oceanic-next'
 Plug 'morhetz/gruvbox'
 Plug 'tomasiser/vim-code-dark'
+Plug 'arcticicestudio/nord-vim'
+Plug 'ayu-theme/ayu-vim'
+Plug 'drewtempelmeyer/palenight.vim'
+Plug 'rakr/vim-one'
+Plug 'dracula/vim', { 'as': 'dracula' }
+
 Plug 'vim-airline/vim-airline' "Status bar
 Plug 'vim-airline/vim-airline-themes' "Applicable themes
 
@@ -21,16 +27,22 @@ call plug#end()
 let mapleader=" "
 set number
 set relativenumber
-set mouse=a
 augroup numbertoggle
   autocmd!
   autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
   autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 augroup END
 
+set mouse=a
+set autoread
+set confirm
+set list lcs=trail:·,tab:»·
+
 imap jj <Esc>
 map <leader>qq :qall<CR>
 map <leader>w :q<CR>
+inoremap <silent> <C-s> <C-o>:w<CR>
+noremap <silent> <C-s> :w<CR>
 
 map <leader>h :wincmd h<CR>
 map <leader>j :wincmd j<CR>
@@ -41,7 +53,10 @@ map <leader>p :wincmd p<CR>
 nmap <Leader>b :Buffers<CR>
 nmap <Leader>t :Files<CR>
 nmap <Leader>p :GFiles<CR>
-nmap <Leader>r :Tags<CR>
+nmap <Leader>r :History<CR>
+nmap <Leader>f :Rg<CR>
+
+nmap <Leader>/ :nohl<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
@@ -66,10 +81,16 @@ endif
 
 " Theme
 syntax enable
-"colorscheme OceanicNext
-"colorscheme codedark
-"let g:airline_theme = 'codedark'
-colorscheme gruvbox
+" colorscheme nord
+colorscheme OceanicNext
+" colorscheme codedark
+" let g:airline_theme = 'codedark'
+" colorscheme gruvbox
+" colorscheme ayu
+" colorscheme palenight
+" colorscheme one
+" colorscheme dracula
+"
 set background=dark
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -165,8 +186,8 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <leader>rn <Plug>(coc-rename)
 
 " Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+xmap <leader>fs  <Plug>(coc-format-selected)
+nmap <leader>fs  <Plug>(coc-format-selected)
 
 augroup mygroup
   autocmd!
@@ -199,8 +220,8 @@ omap ac <Plug>(coc-classobj-a)
 
 " Use CTRL-S for selections ranges.
 " Requires 'textDocument/selectionRange' support of LS, ex: coc-tsserver
-nmap <silent> <C-s> <Plug>(coc-range-select)
-xmap <silent> <C-s> <Plug>(coc-range-select)
+" nmap <silent> <C-s> <Plug>(coc-range-select)
+" xmap <silent> <C-s> <Plug>(coc-range-select)
 
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
