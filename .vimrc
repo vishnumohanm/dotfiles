@@ -40,7 +40,7 @@ set list lcs=trail:·,tab:»·
 
 imap jj <Esc>
 map <leader>qq :qall<CR>
-map <leader>w :q<CR>
+map <leader>w :wq<CR>
 inoremap <silent> <C-s> <C-o>:w<CR>
 noremap <silent> <C-s> :w<CR>
 
