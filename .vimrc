@@ -2,9 +2,10 @@ call plug#begin('~/.vim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
-Plug 'jiangmiao/auto-pairs'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'tpope/vim-commentary'
+Plug 'easymotion/vim-easymotion'
+Plug 'tpope/vim-surround'
 " Themes
 Plug 'mhartington/oceanic-next'
 Plug 'morhetz/gruvbox'
@@ -40,9 +41,10 @@ set list lcs=trail:·,tab:»·
 
 imap jj <Esc>
 map <leader>qq :qall<CR>
-map <leader>w :wq<CR>
-inoremap <silent> <C-s> <C-o>:w<CR>
-noremap <silent> <C-s> :w<CR>
+map <leader>w :q<CR>
+"inoremap <C-s> <C-o>:w<CR>
+noremap <C-s> :w<CR>
+vnoremap <Leader>y "+y<CR>
 
 map <leader>h :wincmd h<CR>
 map <leader>j :wincmd j<CR>
@@ -51,7 +53,7 @@ map <leader>l :wincmd l<CR>
 map <leader>p :wincmd p<CR>
 
 nmap <Leader>b :Buffers<CR>
-nmap <Leader>t :Files<CR>
+nmap <Leader>o :Files<CR>
 nmap <Leader>p :GFiles<CR>
 nmap <Leader>r :History<CR>
 nmap <Leader>f :Rg<CR>
@@ -82,10 +84,10 @@ endif
 " Theme
 syntax enable
 " colorscheme nord
-colorscheme OceanicNext
+" colorscheme OceanicNext
 " colorscheme codedark
 " let g:airline_theme = 'codedark'
-" colorscheme gruvbox
+colorscheme gruvbox
 " colorscheme ayu
 " colorscheme palenight
 " colorscheme one
@@ -254,3 +256,8 @@ nnoremap <silent><nowait> <space>cj  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>ck  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>cp  :<C-u>CocListResume<CR>
+
+" -------------- VIM Motion ------------ "
+nmap s <Plug>(easymotion-overwin-f2)
+map <Leader>L <Plug>(easymotion-bd-jk)
+nmap <Leader>L <Plug>(easymotion-overwin-line)
